@@ -36,7 +36,8 @@ process.on('unhandledRejection', (reason, p) => {
 });
 
 const PORT = process.env.PORT || 5000;
-const HOST = process.env.HOST || '127.0.0.1';
+// Use 0.0.0.0 for production (Render), 127.0.0.1 for local dev
+const HOST = process.env.HOST || (process.env.NODE_ENV === 'production' ? '0.0.0.0' : '127.0.0.1');
 
 console.log('Starting server, pid:', process.pid);
 const server = app.listen(PORT, HOST, () => {
